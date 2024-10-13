@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link id="templateStyle" rel="stylesheet" href="template1.css"> <!-- Default template -->
+    <link id="themeStyle" rel="stylesheet" href="light.css"> <!-- Default theme -->
+</head>
+<body>
+    <div class="container">
+        <h1>Your Portfolio</h1>
+        <div id="portfolioData"></div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+        const email = params.get('email');
+        const phone = params.get('phone');
+        const education = params.get('education');
+        const skills = params.get('skills');
+        const about = params.get('about');
+        const hobbies = params.get('hobbies');
+        const github = params.get('github');
+        const linkedin = params.get('linkedin');
+        const projects = params.get('projects');
+     
+        const theme = params.get('theme');
+        const template = params.get('template');
+
+        // Set the CSS file based on the selected template and theme
+        document.getElementById('templateStyle').setAttribute('href', template + '.css');
+        document.getElementById('themeStyle').setAttribute('href', theme + '.css');
+
+        // Display the portfolio data
+        const portfolioData = `
+            <h2>${name}'s Portfolio</h2>
+           
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Education:</strong> ${education}</p>
+            <p><strong>Skills:</strong> ${skills}</p>
+            <p><strong>About Me:</strong> ${about}</p>
+            <p><strong>Hobbies:</strong> ${hobbies}</p>
+            <p><strong>GitHub:</strong> <a href="${github}" target="_blank">${github}</a></p>
+            <p><strong>LinkedIn:</strong> <a href="${linkedin}" target="_blank">${linkedin}</a></p>
+            <p><strong>Projects:</strong> ${projects.split(',').map(project => `<li>${project.trim()}</li>`).join('')}</p>
+        `;
+
+        document.getElementById('portfolioData').innerHTML = portfolioData;
+    </script>
+</body>
+</html>
